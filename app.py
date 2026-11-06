@@ -66,7 +66,7 @@ async def interactions(request: Request):
         return JSONResponse({"type": 1})
 
     # This app is deliberately restricted to its own DM context.
-    if interaction.get("context") != 1:
+    if interaction.get("context") not in (1, 2):
         return JSONResponse({
             "type": 4,
             "data": {

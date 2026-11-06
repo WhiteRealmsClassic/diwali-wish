@@ -12,7 +12,7 @@ from nacl.signing import VerifyKey
 
 app = FastAPI()
 PUBLIC_KEY = os.environ["DISCORD_PUBLIC_KEY"]
-IMAGE_PATH = Path(__file__).parent / "assets" / "diwali.png"
+IMAGE_PATH = Path(__file__).parent / "assets" / "diwali.gif"
 
 def verify_discord_request(request_timestamp: str, signature: str, body: bytes) -> bool:
     try:
@@ -35,8 +35,8 @@ def multipart_interaction_response(payload: dict, image_path: Path) -> Response:
         + json.dumps(payload, ensure_ascii=False)
         + "\r\n",
         f"--{boundary}\r\n"
-        'Content-Disposition: form-data; name="files[0]"; filename="diwali.png"\r\n'
-        "Content-Type: image/png\r\n\r\n",
+        'Content-Disposition: form-data; name="files[0]"; filename="diwali.gif"\r\n'
+        "Content-Type: image/gif\r\n\r\n",
     ]
     body = parts[0].encode("utf-8") + parts[1].encode("utf-8") + image_bytes
     body += f"\r\n--{boundary}--\r\n".encode("utf-8")
@@ -98,7 +98,7 @@ async def interactions(request: Request):
             "Cool bot right? 😎"
         ),
         "color": 0xE6A23C,
-        "image": {"url": "attachment://diwali.png"},
+        "image": {"url": "attachment://diwali.gif"},
         "footer": {"text": "Ik this is better than typing normally lol (spent a whole day coding this)"},
     }
 
@@ -106,7 +106,7 @@ async def interactions(request: Request):
         "type": 4,
         "data": {
             "embeds": [embed],
-            "attachments": [{"id": 0, "filename": "diwali.png"}],
+            "attachments": [{"id": 0, "filename": "diwali.gif"}],
         },
     }
     return multipart_interaction_response(payload, IMAGE_PATH)

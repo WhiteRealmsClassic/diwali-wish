@@ -4,13 +4,13 @@ import requests
 APP_ID = os.environ["DISCORD_APPLICATION_ID"]
 BOT_TOKEN = os.environ["DISCORD_BOT_TOKEN"]
 
-# USER_INSTALL = 1; BOT_DM = 1.
+# USER_INSTALL = 1; BOT_DM = 1; PRIVATE_CHANNEL = 2.
 command = {
     "name": "wish",
     "description": "Receive your Diwali greeting card",
     "type": 1,
     "integration_types": [1],
-    "contexts": [1],
+    "contexts": [1, 2],
 }
 
 url = f"https://discord.com/api/v10/applications/{APP_ID}/commands"

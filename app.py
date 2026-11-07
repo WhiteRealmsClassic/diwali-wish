@@ -88,24 +88,33 @@ async def interactions(request: Request):
             "data": {"content": "The greeting image is missing from the app.", "flags": 64},
         })
 
-    embed = {
-        "title": "🪔 Happy Diwali!",
-        "description": (
-            "May the glow of every diya brighten your days, "
-            "fill your home with happiness, and bring you a year "
-            "full of peace, success, and beautiful moments.\n\n"
-            "**Wishing you and your loved ones a joyful Festival of Lights!**"
-            "Cool bot right? 😎"
-        ),
-        "color": 0xE6A23C,
-        "image": {"url": "attachment://diwali.gif"},
-        "footer": {"text": "Ik this is better than typing normally lol (spent a whole day coding this)"},
-    }
+    embeds = [
+        {
+            "title": "HAPPY DIWALI! ✨",
+            "description": (
+                "May every diya bring a little more light into your life, "
+                "every spark bring a new hope, and every moment be filled with happiness.\n\n"
+                "Wishing you and your loved ones a beautiful Festival of Lights, "
+                "filled with **peace, prosperity, success, and unforgettable memories!**"
+            ),
+            "color": 0xE6A23C,
+            "image": {"url": "attachment://diwali.gif"},
+        },
+        {
+            "description": (
+                "😎 **A little something special, made with code.**\n\n"
+                "Built with a whole day of coding, just to send you a Diwali wish "
+                "that's a bit more special than a regular message.\n\n"
+                "**Have a wonderful Diwali!** 🪔"
+            ),
+            "color": 0xE6A23C,
+        },
+    ]
 
     payload = {
         "type": 4,
         "data": {
-            "embeds": [embed],
+            "embeds": embeds,
             "attachments": [{"id": 0, "filename": "diwali.gif"}],
         },
     }
